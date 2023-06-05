@@ -1,0 +1,27 @@
+#!/bin/bash
+
+CONTAINER_A="gost"
+CONTAINER_B="with-warp"
+
+if [[ $(sudo docker ps -q -f name=$CONTAINER_A) ]]; then
+    echo "Container A is running, stopping and starting container B..."
+    sudo docker stop $CONTAINER_A
+    echo "Start"
+    warp-cli connect
+    sudo docker start $CONTAINER_B
+elif [[ $(sudo docker ps -q -f name=$CONTAINER_B) ]]; then
+    echo "Container B is running, stopping and starting container A..."
+    sudo docker stop $CONTAINER_B
+    warp-cli disconnect
+    echo "Start"
+    sudo docker start $CONTAINER_A
+else
+    echo "Neither container A nor B is running, starting container A..."
+    sudo docker start $CONTAINER_A
+fi
+
+if [[ $(sudo docker ps -q -f name=$CONTAINER_A) ]]; then
+    sudo docker logs $CONTAINER_A -n 5
+elif [[ $(sudo docker ps -q -f name=$CONTAINER_B) ]]; then
+    sudo docker logs $CONTAINER_B -n 5
+fi

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+CONTAINER_A="gost"
+CONTAINER_B="with-warp"
+
+if [[ $(sudo docker ps -q -f name=$CONTAINER_A) ]]; then
+    echo "Container A is running, showing logs..."
+    sudo docker logs $CONTAINER_A -n 10
+elif [[ $(sudo docker ps -q -f name=$CONTAINER_B) ]]; then
+    echo "Container B is running, showing logs..."
+    sudo docker logs $CONTAINER_B -n 10
+else
+    echo "Neither container A nor B is running, starting container A..."
+    sudo docker start $CONTAINER_A
+fi

@@ -1,0 +1,43 @@
+version: "3.4"
+
+services:
+  switcher:
+    build:
+      context: ./switcher
+      dockerfile: Dockerfile
+      args:
+        - SCRIPT_DIR=${SCRIPT_DIR}
+    pid: "host"
+    privileged: true
+  nginx:
+    restart: always
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "443:443"
+  gost:
+    container_name: gost
+    image: ginuerzh/gost:latest
+    network_mode: "host"
+    volumes:
+      - ./cert:/etc/httpd/cert
+    command:
+      [
+        "-L",
+        "http2://${GOST_USER}:${GOST_PWD}@:${GOST_PORT}?cert=/etc/httpd/cert/server.crt&key=/etc/httpd/cert/server.key&probe_resist=code:404"
+      ]
+  with-warp:
+    container_name: with-warp
+    image: ginuerzh/gost:latest
+    network_mode: "host"
+    volumes:
+      - ./cert:/etc/httpd/cert
+    command:
+      [
+        "-L",
+        "http2://${GOST_USER}:${GOST_PWD}@:${GOST_PORT}?cert=/etc/httpd/cert/server.crt&key=/etc/httpd/cert/server.key&probe_resist=code:404",
+        "-F",
+        "socks5://:40000"
+      ]
+

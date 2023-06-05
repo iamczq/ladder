@@ -1,0 +1,8 @@
+#!/bin/bash
+
+CONTAINER_A="gost"
+CONTAINER_B="with-warp"
+
+sudo docker stop $CONTAINER_A
+sudo docker stop $CONTAINER_B
+warp-cli disconnect
