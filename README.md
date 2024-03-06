@@ -1,7 +1,7 @@
 # Ladder
 ## Installation
 1. [Install docker](https://www.google.com/search?q=install+docker)
-2. [Install warp-cli](https://www.google.com/search?q=install+warp-cli)
+2. [Install warp-cli](https://www.google.com/search?q=install+warp-cli). Before warp-cli connect. Make sure the mode is set to proxy(warp-cli set-mode proxy). Otherwise the server won't be accessible if it's running on a vps.
 3. git clone repository
 4. Edit .env file. Make sure the GOST_PORT listed in .env is accessible.
 5. Run ./initialize
