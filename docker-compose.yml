@@ -2,11 +2,13 @@ version: "3.4"
 
 services:
   switcher:
+    restart: always
     build:
       context: ./switcher
       dockerfile: Dockerfile
       args:
         - SCRIPT_DIR=${SCRIPT_DIR}
+        - ADMIN_USER=${ADMIN_USER}
     pid: "host"
     privileged: true
   nginx:

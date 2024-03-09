@@ -6,7 +6,9 @@ KEY="server.key"
 
 openssl req -newkey rsa:4096 -x509 -sha512 -days 365 -nodes -out $CERT -keyout $KEY
 
+mkdir -p ./cert
 cp $CERT $KEY ./cert
+mkdir -p ./nginx/cert
 cp $CERT $KEY ./nginx/cert
 cp $CERT $KEY ./switcher
 rm $CERT $KEY

@@ -35,10 +35,11 @@ const executeCommand = (cmd, res) => {
     switch: "switch",
   };
   const scriptPath = process.argv[2];
+  const adminUser = process.argv[3];
   const command = cmds[cmd];
 
   if (scriptPath && command) {
-    const toRun = `nsenter -t 1 -m -u -n -i sudo -u admin bash ${scriptPath}/${command}`;
+    const toRun = `nsenter -t 1 -m -u -n -i sudo -u ${adminUser} bash ${scriptPath}/${command}`;
     const child = exec(`${toRun}`, (error, stdout, stderr) => {
       // Handle the possible errors
       if (error) {

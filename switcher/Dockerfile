@@ -2,6 +2,8 @@ FROM node:lts-alpine
 
 ARG SCRIPT_DIR
 ENV SCRIPT_DIR ${SCRIPT_DIR}
+ARG ADMIN_USER
+ENV ADMIN_USER ${ADMIN_USER}
 WORKDIR /usr/src/app
 COPY . .
-CMD ["node", "index.js", "${SCRIPT_DIR}"]
+CMD ["node", "index.js", "${SCRIPT_DIR}", "${ADMIN_USER}"]
