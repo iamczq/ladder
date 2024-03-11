@@ -13,7 +13,9 @@
 3. [https://public_ip_address/switch](https://public_ip_address/switch)
 ## Setup Client
 ### Android
-1. Install shadowsocks client and shadowsocks gost plugin.
+1. Install shadowsocks client.
+2. Install [shadowsocks gost plugin](https://github.com/segfault-bilibili/ShadowsocksGostPlugin)
+   Configuration: -L ss://none@#SS_LOCAL_HOST:#SS_LOCAL_PORT -F https://user:password@ip:port?dns=8.8.8.8
 ### iPhone/iPad
 1. Install shadowrocket.
 ### Windows
