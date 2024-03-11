@@ -11,3 +11,14 @@
 1. [https://public_ip_address/up](https://public_ip_address/up)
 2. [https://public_ip_address/down](https://public_ip_address/down)
 3. [https://public_ip_address/switch](https://public_ip_address/switch)
+## Setup Client
+### Android
+1. Install shadowsocks client and shadowsocks gost plugin.
+### iPhone/iPad
+1. Install shadowrocket.
+### Windows
+1. Use Clash for a global proxy. Below is for web browser only.
+2. Download [Gost](https://github.com/ginuerzh/gost)
+3. Setup a local shadowsocks server: gost -L ss://aes-128-gcm:local_password@:local_port -F https://user:password@remote_ip:remote_port
+4. Use a shdowsocks client to connect the local server.
+### Mac
